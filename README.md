@@ -1,3 +1,4 @@
+```
 nvim/
     |-- init.lua 总配置控制
     |-- lua/
@@ -7,4 +8,4 @@ nvim/
 	|-- plugins.lua	插件管理(使用lazy.nvim)
 	|-- pgconfig/	插件配置文件
 	|-- lsp/	所有代码补全相关配置
-
+```
