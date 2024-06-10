@@ -11,6 +11,8 @@ local del = vim.keymap.del
 vim.g.mapleader = ','
 
 --基础配置------------------------------------------------------------
+-- Esc映射
+map('i', 'jj', '<Esc>', opt)
 -- 换页(切换缓冲区)
 -- 由barbar中的换页指令取代
 -- map('n', '<C-h>', ':bp!<CR>', opt)
@@ -29,7 +31,9 @@ map('n', '<A->>', '<Cmd>BufferMoveNext<CR>', opf)
 map('n', '<A-BS>', '<Cmd>BufferClose<CR>', opf)
 -- 将窗口固定在右侧
 vim.api.nvim_create_user_command('P', 'BufferPin', {})
-
+-- markdown实时预览
+vim.api.nvim_create_user_command('MP', 'MarkdownPreview', {})
+vim.api.nvim_create_user_command('MSP', 'MarkdownPreviewStop', {})
 
 --api映射
 local pluginKeys = {}

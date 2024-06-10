@@ -16,7 +16,7 @@ end
 
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 local ensureServers = {
-    'pylsp',	'lua_ls',	'cmake',	'clangd',
+    'pylsp',	'lua_ls',	'cmake',
     'bashls',
 
 }

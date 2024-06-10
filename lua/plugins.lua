@@ -67,5 +67,12 @@ require('lazy').setup({
     { 'neovim/nvim-lspconfig' },
 	-- 函数补全
 	{ 'ray-x/lsp_signature.nvim', event = "VeryLazy",},
+	--语法高亮
+	{ 'nvim-treesitter/nvim-treesitter' },
+	-- markdown实时预览
+	{
+  	  'iamcco/markdown-preview.nvim', build = function() vim.fn["mkdp#util#install"]() end,
+  	  lazy = false
+	}
 })
 

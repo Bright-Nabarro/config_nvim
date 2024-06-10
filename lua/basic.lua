@@ -18,7 +18,7 @@ vim.opt.termguicolors = true
 
 --剪贴版，wsl加载win32yank.exe
 local in_wsl = os.getenv('WSL_DISTRO_NAME') ~= nil	--检测当前环境是否是wsl
-if in_wsl then
+if in_wsl and not vim.g.neovide then
     vim.g.clipboard = {
         name = 'win32yank',
         copy = { ['+'] = { 'win32yank.exe', '-i' }, ['*'] = { 'win32yank.exe', '-i' } },
