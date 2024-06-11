@@ -1,8 +1,8 @@
 local transparent = true
 
-if vim.g.neovide then
-	transparent = false
-end
+--if vim.g.neovide then
+--	transparent = false
+--end
 
 require('catppuccin').setup({
     flavour = 'mocha', -- latte, frappe, macchiato, mocha
@@ -24,13 +24,13 @@ require('catppuccin').setup({
     styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
         comments = {}, -- Change the style of comments
         conditionals = { 'italic' },
-        loops = {},
-        functions = {},
+        loops = { 'italic' },
+        functions = { 'italic' },
         keywords = { 'bold' },
         strings = {},
         variables = {},
         numbers = {},
-        booleans = {},
+        booleans = { 'underline' },
         properties = {},
         types = {},
         operators = {},

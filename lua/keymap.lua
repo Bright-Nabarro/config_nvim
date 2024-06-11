@@ -21,6 +21,10 @@ map('i', 'jj', '<Esc>', opt)
 map('n', '<C-i>', '<C-w>', opf)
 --取消搜索高亮
 map('n', '<space><space>', ':noh<CR>', opf)
+--cv
+map('x', '<C-c>', '"+y', opf)
+map('x', '<C-v>', '"+p', opf)
+map('i', '<C-v>', '<Esc>"+p', opf)
 
 --插件配置------------------------------------------------------------
 --快捷指令映射
@@ -32,8 +36,8 @@ map('n', '<A-BS>', '<Cmd>BufferClose<CR>', opf)
 -- 将窗口固定在右侧
 vim.api.nvim_create_user_command('P', 'BufferPin', {})
 -- markdown实时预览
-vim.api.nvim_create_user_command('MP', 'MarkdownPreview', {})
-vim.api.nvim_create_user_command('MSP', 'MarkdownPreviewStop', {})
+vim.api.nvim_create_user_command('MD', 'MarkdownPreview', {})
+vim.api.nvim_create_user_command('MP', 'MarkdownPreviewStop', {})
 
 --api映射
 local pluginKeys = {}
