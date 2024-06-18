@@ -7,6 +7,7 @@ local opf = {noremap=false, silent=true}
 local map = vim.api.nvim_set_keymap
 local set = vim.keymap.set
 local del = vim.keymap.del
+local cmd = vim.api.nvim_create_user_command
 --设置<leader>键
 vim.g.mapleader = ','
 
@@ -20,24 +21,50 @@ map('i', 'jj', '<Esc>', opt)
 -- 切屏(wsl中<C-w>容易误触关闭窗口)
 map('n', '<C-i>', '<C-w>', opf)
 --取消搜索高亮
-map('n', '<space><space>', ':noh<CR>', opf)
+map('n', '<leader>n', ':noh<CR>', opt)
 --cv
 map('x', '<C-c>', '"+y', opf)
 map('x', '<C-v>', '"+p', opf)
 map('i', '<C-v>', '<Esc>"+p', opf)
+--退出terminal模式
+map('t', '<Esc>', '<C-\\><C-n>', opf)
 
+--命令映射
+cmd('Ci', '!cmake -B build', {})
+cmd('Cb', '!cmake --build build', {})
 --插件配置------------------------------------------------------------
 --快捷指令映射
+--窗口标签
 map('n', '<C-h>', '<Cmd>BufferPrevious<CR>', opf)
 map('n', '<C-l>', '<Cmd>BufferNext<CR>', opf)
 map('n', '<A-<>', '<Cmd>BufferMovePrevious<CR>', opf)
 map('n', '<A->>', '<Cmd>BufferMoveNext<CR>', opf)
 map('n', '<A-BS>', '<Cmd>BufferClose<CR>', opf)
 -- 将窗口固定在右侧
-vim.api.nvim_create_user_command('P', 'BufferPin', {})
+cmd('P', 'BufferPin', {})
 -- markdown实时预览
-vim.api.nvim_create_user_command('MD', 'MarkdownPreview', {})
-vim.api.nvim_create_user_command('MP', 'MarkdownPreviewStop', {})
+cmd('Md', 'MarkdownPreview', {})
+cmd('Mp', 'MarkdownPreviewStop', {})
+
+--gdb调试
+vim.g.nvimgdb_disable_start_keymaps = 1
+cmd('Cgdb', 'GdbStart gdb -q <args>', { nargs = 1 })
+map('n', '<leader>b', '<Cmd>GdbBreakpointToggle<Cr>', opt)
+
+vim.g.nvimgdb_config_override = {
+	--disable
+	key_frameup 	= '<leader>pp',
+	key_framedown 	= '<leader>dd',
+    key_eval 		= '<leader>114514',
+	--setting
+	key_next 		= '<F9>',
+	key_step 		= '<F10>',
+    key_continue 	= '<F11>',
+    key_finish 		= '<F12>',
+	termwin_command	= 'belowright vnew',
+    codewin_command	= 'vnew',
+}
+
 
 --api映射
 local pluginKeys = {}
@@ -100,6 +127,10 @@ pluginKeys.maplsp = function(client, bufnr)
     set('n', 'gr', vim.lsp.buf.references, bufopts)
     -- 打开诊断窗口
     set('n', '<leader>a', vim.diagnostic.open_float, opt)
+	-- 内联提示
+	set('n', '<space><space>', function()
+		vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+		end, opt)
 end
 
 return pluginKeys

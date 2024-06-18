@@ -3,7 +3,7 @@
 vim.o.guifont = 'Maple Mono SC NF:h13'
 -- 背景透明透明度
 vim.g.neovide_theme = 'dark'
-vim.g.neovide_transparency = 0.8
+vim.g.neovide_transparency = 0.82
 -- 滚动时间（默认0.3)
 vim.g.neovide_scroll_animation_length = 0.2
 -- 浮动背景模糊强度

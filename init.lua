@@ -6,8 +6,6 @@
 
 require('basic')
 require('plugins')
--- 加载映射
-require('keymap')
 
 require('pgconfig.nvim-treesitter')
 -- 加载主题
@@ -21,6 +19,9 @@ require('lsp.nvim-cmp')
 require('lsp.lsp')
 require('pgconfig.lsp_signature')
 require('pgconfig.markdown-preview')
+
+-- 加载映射
+require('keymap')
 
 --Neovide配置
 if vim.g.neovide then
